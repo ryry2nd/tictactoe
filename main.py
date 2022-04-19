@@ -6,7 +6,7 @@ from Assets.gameCode.gui.board import Board
 pygame.init()
 
 #init vars
-WIDTH, HEIGHT = 600, 600
+WIDTH, HEIGHT = 900, 500
 FPS = 60
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -29,6 +29,8 @@ def main():
                     sys.exit()
                 elif event.key == pygame.K_BACKSPACE:
                     board.goBack()
+                elif event.key == pygame.K_r:
+                    board.restart()
 
         WIN.fill((0, 0, 0))
         board.draw(WIN)
