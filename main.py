@@ -1,28 +1,35 @@
 #imports
-import pygame
+import pygame, sys
+from Assets.gameCode.gui.board import Board
 
 #init
 pygame.init()
 
 #init vars
-WIDTH, HEIGHT = 900, 500
+WIDTH, HEIGHT = 600, 600
 FPS = 60
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 
+#main function
 def main():
     #init vars
+    board = Board((WIDTH, HEIGHT))
     clock = pygame.time.Clock()
 
-    while True:
-        clock.tick(FPS)
-        for event in pygame.event.get():
+    while True:#game loop
+        clock.tick(FPS)#fps
+        for event in pygame.event.get():#loop through events
             if event.type == pygame.QUIT:
-                exit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                sys.exit()
+            elif pygame.mouse.get_pressed()[0] and event.type == pygame.MOUSEBUTTONDOWN:
+                board.click()
 
-        WIN.fill((255, 255, 255))
-        pygame.display.update()
+        WIN.fill((0, 0, 0))
+        board.draw(WIN)
+        pygame.display.update()#update screen
 
-
-if __name__ == '__main__':
+if __name__ == '__main__':# if it is not being imported, run main
     main()
