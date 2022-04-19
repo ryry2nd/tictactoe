@@ -31,7 +31,7 @@ class Board:
 
         for i in self.peaces:
             self.letterDraw(WIN, i)
-    
+
     def peaceIsTaken(self, rect):
         for i in self.peaces:
             if i[0].x == rect.x and i[0].y == rect.y:
@@ -43,6 +43,10 @@ class Board:
             for rect in col:
                 if rect.collidepoint(pygame.mouse.get_pos()) and self.peaceIsTaken(rect):
                     self.peaces.append((rect, len(self.peaces)%2))
+    
+    def goBack(self):
+        if len(self.peaces):
+            self.peaces.pop()
 
     def letterDraw(self, WIN, xData):
         x = xData[0][0]

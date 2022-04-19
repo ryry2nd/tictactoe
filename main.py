@@ -22,10 +22,13 @@ def main():
         for event in pygame.event.get():#loop through events
             if event.type == pygame.QUIT:
                 sys.exit()
-            elif event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                sys.exit()
             elif pygame.mouse.get_pressed()[0] and event.type == pygame.MOUSEBUTTONDOWN:
                 board.click()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    sys.exit()
+                elif event.key == pygame.K_BACKSPACE:
+                    board.goBack()
 
         WIN.fill((0, 0, 0))
         board.draw(WIN)
